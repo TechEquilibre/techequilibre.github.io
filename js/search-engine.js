@@ -1,67 +1,37 @@
-let idx;
-let documents = [];
-
-function normalize(text) {
-  return text.toLowerCase()
-    .normalize("NFD")
-    .replace(/[\u0300-\u036f]/g, "");
-}
-
-fetch('data/search.json')
-  .then(res => res.json())
+fetch("data/articles.json")
+  .then(response => response.json())
   .then(data => {
 
-    documents = data.map(doc => ({
-      ...doc,
-      searchField: normalize(doc.title + " " + doc.description)
-    }));
+    const idx = lunr(function () {
+      this.ref("id")
+      this.field("title")
+      this.field("content")
 
-    idx = lunr(function () {
-      this.ref('id');
-      this.field('searchField', { boost: 10 });
+      data.forEach(doc => this.add(doc))
+    })
 
-      this.pipeline.remove(lunr.stemmer);
-      this.searchPipeline.remove(lunr.stemmer);
+    const input = document.getElementById("searchInput")
+    const suggestions = document.getElementById("suggestions")
 
-      documents.forEach(doc => this.add(doc));
-    });
-  });
+    input.addEventListener("input", function () {
+      const query = input.value
 
-const input = document.getElementById('searchInput');
-const suggestionsBox = document.getElementById('suggestions');
+      if (query.length < 2) {
+        suggestions.innerHTML = ""
+        return
+      }
 
-let timer;
+      const results = idx.search(query)
+      suggestions.innerHTML = ""
 
-input.addEventListener('input', function () {
+      results.forEach(result => {
+        const article = data.find(a => a.id === result.ref)
 
-  clearTimeout(timer);
+        const div = document.createElement("div")
+        div.className = "suggestion-item"
+        div.innerHTML = `<a href="${article.url}">${article.title}</a>`
 
-  timer = setTimeout(() => {
-
-    const query = normalize(this.value);
-
-    if (query.length < 2) {
-      suggestionsBox.innerHTML = "";
-      return;
-    }
-
-    const results = idx.search(query + "* " + query + "~1");
-
-    suggestionsBox.innerHTML = "";
-
-    results.slice(0, 6).forEach(result => {
-
-      const doc = documents.find(d => d.id === result.ref);
-
-      suggestionsBox.innerHTML += `
-        <div class="suggestion-item">
-          <a href="${doc.url}">
-            <strong>${doc.title}</strong><br>
-            <small>${doc.description}</small>
-          </a>
-        </div>
-      `;
-    });
-
-  }, 150);
-});
+        suggestions.appendChild(div)
+      })
+    })
+  })
