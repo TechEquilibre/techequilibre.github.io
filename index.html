@@ -3,28 +3,34 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mon site</title>
+  <title>TechÉquilibre</title>
   <style>
+    /* Menu principal */
     nav {
       background-color: #f2f2f2;
       padding: 0.5rem 1rem;
     }
+
     .menu {
       list-style: none;
-      padding: 0;
       margin: 0;
+      padding: 0;
       display: flex;
       gap: 1rem;
     }
+
     .menu li {
       position: relative;
     }
+
     .menu a {
       text-decoration: none;
       padding: 0.5rem 1rem;
       display: block;
       color: #333;
     }
+
+    /* Menu déroulant */
     .dropdown-menu {
       display: none;
       position: absolute;
@@ -38,8 +44,18 @@
       box-shadow: 0 2px 5px rgba(0,0,0,0.2);
       z-index: 10;
     }
+
     .dropdown-menu li a:hover {
       background-color: #ddd;
+    }
+
+    /* Style du texte principal */
+    main {
+      padding: 2rem;
+      font-family: 'Inter', sans-serif;
+      color: #333;
+      max-width: 800px;
+      margin: auto;
     }
   </style>
 </head>
@@ -52,7 +68,6 @@
       <a href="#" id="toggle-dropdown">Articles récents ▼</a>
       <ul class="dropdown-menu">
         <li><a href="articles/quel-os-choisir-en-2026.html">Quel OS choisir en 2026</a></li>
-        <li><a href="articles/article2.html">Article 2</a></li>
       </ul>
     </li>
     <li><a href="#">À propos</a></li>
@@ -60,23 +75,27 @@
   </ul>
 </nav>
 
-  <!-- Contenu principal -->
-  <main>
-    <h1>Bienvenue sur TechÉquilibre</h1>
-    <p>
-      TechÉquilibre vous aide à comprendre l’informatique simplement. Choisissez le bon système d’exploitation, adaptez votre matériel à vos vrais besoins et adoptez une approche responsable et durable du numérique. Nos guides sont pédagogiques, neutres et accessibles aux débutants.
-    </p>
+<main>
+  <h1>Bienvenue sur TechÉquilibre</h1>
+  <p>TechÉquilibre vous aide à comprendre l’informatique simplement. Choisissez le bon système d’exploitation, adaptez votre matériel à vos vrais besoins et adoptez une approche responsable et durable du numérique. Nos guides sont pédagogiques, neutres et accessibles aux débutants.</p>
+</main>
 
-<div style="border: 1px solid #888; background-color: #fff8e1; padding: 10px 15px; font-size: 0.9em; color: #333; border-radius: 8px; margin: 15px 0; text-align: center; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
-  <strong>Note :</strong> Toutes les recommandations de ce site sont <strong>indépendantes et non sponsorisées</strong>.
-</div>
+<script>
+  const toggle = document.getElementById('toggle-dropdown');
+  const dropdown = document.querySelector('.dropdown-menu');
 
-    <!-- Barre de recherche -->
-    <div class="search-bar">
-      <input type="text" placeholder="Cherchez un article…">
-      <button>Rechercher</button>
-    </div>
-  </main>
+  toggle.addEventListener('click', function(e) {
+    e.preventDefault();
+    dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+  });
+
+  document.addEventListener('click', function(e) {
+    if (!toggle.contains(e.target) && !dropdown.contains(e.target)) {
+      dropdown.style.display = 'none';
+    }
+  });
+</script>
 
 </body>
 </html>
+
