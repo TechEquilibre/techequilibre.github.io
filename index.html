@@ -1,66 +1,3 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>TechÉquilibre</title>
-  <style>
-    /* Menu principal */
-    nav {
-      background-color: #f2f2f2;
-      padding: 0.5rem 1rem;
-    }
-
-    .menu {
-      list-style: none;
-      margin: 0;
-      padding: 0;
-      display: flex;
-      gap: 1rem;
-    }
-
-    .menu li {
-      position: relative;
-    }
-
-    .menu a {
-      text-decoration: none;
-      padding: 0.5rem 1rem;
-      display: block;
-      color: #333;
-    }
-
-    /* Menu déroulant */
-    .dropdown-menu {
-      display: none;
-      position: absolute;
-      top: 100%;
-      left: 0;
-      background-color: #f2f2f2;
-      list-style: none;
-      padding: 0;
-      margin: 0;
-      min-width: 200px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-      z-index: 10;
-    }
-
-    .dropdown-menu li a:hover {
-      background-color: #ddd;
-    }
-
-    /* Style du texte principal */
-    main {
-      padding: 2rem;
-      font-family: 'Inter', sans-serif;
-      color: #333;
-      max-width: 800px;
-      margin: auto;
-    }
-  </style>
-</head>
-<body>
-
 <nav>
   <ul class="menu">
     <li><a href="index.html">Accueil</a></li>
@@ -68,6 +5,8 @@
       <a href="#" id="toggle-dropdown">Articles récents ▼</a>
       <ul class="dropdown-menu">
         <li><a href="articles/quel-os-choisir-en-2026.html">Quel OS choisir en 2026</a></li>
+        <li><a href="articles/article2.html">Article 2</a></li>
+        <li><a href="articles/article3.html">Article 3</a></li>
       </ul>
     </li>
     <li><a href="#">À propos</a></li>
@@ -75,10 +14,66 @@
   </ul>
 </nav>
 
-<main>
+<main class="main-content">
   <h1>Bienvenue sur TechÉquilibre</h1>
   <p>TechÉquilibre vous aide à comprendre l’informatique simplement. Choisissez le bon système d’exploitation, adaptez votre matériel à vos vrais besoins et adoptez une approche responsable et durable du numérique. Nos guides sont pédagogiques, neutres et accessibles aux débutants.</p>
 </main>
+
+<style>
+  /* Menu principal */
+  .menu {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 1rem;
+    background-color: #123456; /* couleur de ton site */
+    font-family: 'Inter', sans-serif; /* police de ton site */
+  }
+
+  .menu li {
+    position: relative;
+  }
+
+  .menu a {
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    display: block;
+    color: #fff; /* couleur du texte menu */
+  }
+
+  /* Menu déroulant */
+  .dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #234567; /* couleur fond dropdown */
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    min-width: 200px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    z-index: 10;
+  }
+
+  .dropdown-menu li a {
+    color: #fff; /* texte dropdown */
+    padding: 0.5rem 1rem;
+  }
+
+  .dropdown-menu li a:hover {
+    background-color: #345678; /* hover dropdown */
+  }
+
+  /* Texte principal */
+  .main-content {
+    padding: 2rem;
+    max-width: 800px;
+    margin: auto;
+    color: #333; /* couleur texte principal */
+  }
+</style>
 
 <script>
   const toggle = document.getElementById('toggle-dropdown');
@@ -95,7 +90,3 @@
     }
   });
 </script>
-
-</body>
-</html>
-
