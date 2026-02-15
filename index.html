@@ -16,20 +16,18 @@
       color: #1f2937;
     }
 
-    /* MENU */
     nav {
       width: 220px;
       background-color: #3b82f6;
       color: #fff;
       padding: 30px 20px;
-      flex-shrink: 0;
       display: flex;
       flex-direction: column;
       gap: 20px;
       position: relative;
     }
 
-    nav h2 { font-size: 1.8em; font-weight: 600; }
+    nav h2 { font-size: 1.8em; }
 
     nav a {
       text-decoration: none;
@@ -41,7 +39,6 @@
 
     nav a:hover { background-color: rgba(255,255,255,0.2); }
 
-    /* CONTENU */
     main {
       flex-grow: 1;
       padding: 50px 40px;
@@ -50,10 +47,8 @@
       gap: 30px;
     }
 
-    main h1 { font-size: 2.4em; font-weight: 600; color: #111827; }
-    main h2 { font-size: 1.8em; font-weight: 600; color: #111827; margin-top: 20px; }
+    main h1 { font-size: 2.4em; color: #111827; }
 
-    /* SEARCH BAR */
     .search-bar {
       position: relative;
       display: flex;
@@ -100,69 +95,40 @@
       color: #1f2937;
       display: block;
     }
-
-    /* Responsive */
-    @media (max-width: 768px) {
-      body { flex-direction: column; }
-      nav { width: 100%; flex-direction: row; overflow-x: auto; gap: 15px; padding: 15px; }
-      nav h2 { display: none; }
-      main { padding: 30px 20px; }
-    }
   </style>
 </head>
 
 <body>
 
-  <!-- MENU -->
-  <nav>
+<nav>
+  <h2>TechÉquilibre</h2>
 
-    <h2>TechÉquilibre</h2>
+  <div class="search-bar">
+    <input type="text" id="searchInput" placeholder="Rechercher un article ...">
+    <div id="suggestions"></div>
+  </div>
 
-    <!-- BARRE INTELLIGENTE -->
-    <div class="search-bar">
-      <input type="text" id="searchInput" placeholder="Rechercher un article ...">
-      <div id="suggestions"></div>
-    </div>
+  <a href="#">Accueil</a>
+  <a href="articles/quel-os-choisir-en-2026.html">Quel OS choisir en 2026</a>
+  <a href="#">À propos</a>
+  <a href="#">Contact</a>
+</nav>
 
-    <a href="#">Accueil</a>
-    <a href="articles/quel-os-choisir-en-2026.html">Quel OS choisir en 2026</a>
-    <a href="#">À propos</a>
-    <a href="#">Contact</a>
+<main>
+  <h1>Bienvenue sur TechÉquilibre</h1>
 
-  </nav>
+  <p>
+    TechÉquilibre vous aide à comprendre l’informatique simplement.
+  </p>
 
-  <!-- CONTENU -->
-  <main>
-    <h1>Bienvenue sur TechÉquilibre</h1>
-    <p>Contenu de ton site éducatif tech.</p>
-  </main>
+  <div style="border: 1px solid #888; background-color: #fff8e1; padding: 10px; border-radius: 8px;">
+    <strong>Note :</strong> recommandations indépendantes.
+  </div>
 
-  <!-- SCRIPTS -->
-  <script src="js/lunr.min.js"></script>
-  <script src="js/search-engine.js"></script>
+</main>
 
-</body>
-</html>
-
-
-  <!-- Contenu principal -->
-  <main>
-    <h1>Bienvenue sur TechÉquilibre</h1>
-    <p>
-      TechÉquilibre vous aide à comprendre l’informatique simplement. Choisissez le bon système d’exploitation, adaptez votre matériel à vos vrais besoins et adoptez une approche responsable et durable du numérique. Nos guides sont pédagogiques, neutres et accessibles aux débutants.
-    </p>
-
-<div style="border: 1px solid #888; background-color: #fff8e1; padding: 10px 15px; font-size: 0.9em; color: #333; border-radius: 8px; margin: 15px 0; text-align: center; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
-  <strong>Note :</strong> Toutes les recommandations de ce site sont <strong>indépendantes et non sponsorisées</strong>.
-</div>
-
-    <!-- Barre de recherche -->
-    <div class="search-bar">
-      <input type="text" placeholder="Cherchez un article…">
-      <button>Rechercher</button>
-    </div>
-  </main>
+<script src="js/lunr.min.js"></script>
+<script src="js/search-engine.js"></script>
 
 </body>
 </html>
-
