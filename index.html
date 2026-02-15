@@ -1,92 +1,145 @@
-<nav>
-  <ul class="menu">
-    <li><a href="index.html">Accueil</a></li>
-    <li class="dropdown">
-      <a href="#" id="toggle-dropdown">Articles récents ▼</a>
-      <ul class="dropdown-menu">
-        <li><a href="articles/quel-os-choisir-en-2026.html">Quel OS choisir en 2026</a></li>
-        <li><a href="articles/article2.html">Article 2</a></li>
-        <li><a href="articles/article3.html">Article 3</a></li>
-      </ul>
-    </li>
-    <li><a href="#">À propos</a></li>
-    <li><a href="#">Contact</a></li>
-  </ul>
-</nav>
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TechÉquilibre</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    /* Reset et base */
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+    body { display: flex; min-height: 100vh; background-color: #f9fafb; color: #1f2937; }
 
-<main class="main-content">
-  <h1>Bienvenue sur TechÉquilibre</h1>
-  <p>TechÉquilibre vous aide à comprendre l’informatique simplement. Choisissez le bon système d’exploitation, adaptez votre matériel à vos vrais besoins et adoptez une approche responsable et durable du numérique. Nos guides sont pédagogiques, neutres et accessibles aux débutants.</p>
-</main>
-
-<style>
-  /* Menu principal */
-  .menu {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    gap: 1rem;
-    background-color: #123456; /* couleur de ton site */
-    font-family: 'Inter', sans-serif; /* police de ton site */
-  }
-
-  .menu li {
-    position: relative;
-  }
-
-  .menu a {
-    text-decoration: none;
-    padding: 0.5rem 1rem;
-    display: block;
-    color: #fff; /* couleur du texte menu */
-  }
-
-  /* Menu déroulant */
-  .dropdown-menu {
-    display: none;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    background-color: #234567; /* couleur fond dropdown */
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    min-width: 200px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-    z-index: 10;
-  }
-
-  .dropdown-menu li a {
-    color: #fff; /* texte dropdown */
-    padding: 0.5rem 1rem;
-  }
-
-  .dropdown-menu li a:hover {
-    background-color: #345678; /* hover dropdown */
-  }
-
-  /* Texte principal */
-  .main-content {
-    padding: 2rem;
-    max-width: 800px;
-    margin: auto;
-    color: #333; /* couleur texte principal */
-  }
-</style>
-
-<script>
-  const toggle = document.getElementById('toggle-dropdown');
-  const dropdown = document.querySelector('.dropdown-menu');
-
-  toggle.addEventListener('click', function(e) {
-    e.preventDefault();
-    dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
-  });
-
-  document.addEventListener('click', function(e) {
-    if (!toggle.contains(e.target) && !dropdown.contains(e.target)) {
-      dropdown.style.display = 'none';
+    /* Menu latéral */
+    nav {
+      width: 220px;
+      background-color: #3b82f6;
+      color: #fff;
+      padding: 30px 20px;
+      flex-shrink: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
     }
-  });
-</script>
+
+    nav h2 { font-size: 1.8em; font-weight: 600; margin-bottom: 10px; }
+
+    nav a {
+      text-decoration: none;
+      color: #fff;
+      padding: 8px 0;
+      border-radius: 6px;
+      transition: background-color 0.2s;
+    }
+
+    nav a:hover { background-color: rgba(255,255,255,0.2); }
+
+    /* Contenu principal */
+    main {
+      flex-grow: 1;
+      padding: 50px 40px;
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+    }
+
+    main h1 { font-size: 2.4em; font-weight: 600; color: #111827; }
+    main h2 { font-size: 1.8em; font-weight: 600; color: #111827; margin-top: 20px; }
+    }
+
+    main table th,
+    main table td {
+      border: 1px solid #ccc;
+      padding: 8px 12px;
+      text-align: left;
+    }
+
+    main table tr:nth-child(even) {
+      background-color: #f3f4f6;
+    }
+
+    main table th {
+      background-color: #e5e7eb;
+      font-weight: 600;
+    }
+
+    /* Barre de recherche */
+    .search-bar {
+      display: flex;
+      max-width: 500px;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+
+    .search-bar input[type="text"] {
+      flex-grow: 1;
+      padding: 12px 15px;
+      border: none;
+      font-size: 1em;
+      outline: none;
+    }
+
+    .search-bar button {
+      padding: 12px 20px;
+      border: none;
+      background-color: #2563eb;
+      color: #fff;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color 0.2s;
+    }
+
+    .search-bar button:hover { background-color: #1e40af; }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      body { flex-direction: column; }
+      nav { width: 100%; flex-direction: row; overflow-x: auto; gap: 15px; padding: 15px; }
+      nav h2 { display: none; }
+      nav a { flex-shrink: 0; padding: 10px 15px; }
+      main { padding: 30px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+
+  <!-- Menu latéral -->
+  <nav>
+    <h2>TechÉquilibre</h2>
+
+    <form action="recherche.html" method="get" style="display: flex; border: 1px solid #888; background-color: #fff8e1; border-radius: 8px; overflow: hidden;">
+      <input type="text" name="q" placeholder="Rechercher un article ..." 
+             style="flex: 1; padding: 8px 10px; border: none; outline: none; font-size: 0.9em; color: #333;">
+      <button type="submit" 
+              style="padding: 0 12px; border: none; background-color: #ff9800; color: white; cursor: pointer; font-size: 0.9em;">
+        🔍
+      </button>
+    </form>
+
+    <a href="#">Accueil</a>
+    <a href="#">À propos</a>
+    <a href="#">Contact</a>
+  </nav>
+
+  <!-- Contenu principal -->
+  <main>
+    <h1>Bienvenue sur TechÉquilibre</h1>
+    <p>
+      TechÉquilibre vous aide à comprendre l’informatique simplement. Choisissez le bon système d’exploitation, adaptez votre matériel à vos vrais besoins et adoptez une approche responsable et durable du numérique. Nos guides sont pédagogiques, neutres et accessibles aux débutants.
+    </p>
+
+<div style="border: 1px solid #888; background-color: #fff8e1; padding: 10px 15px; font-size: 0.9em; color: #333; border-radius: 8px; margin: 15px 0; text-align: center; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+  <strong>Note :</strong> Toutes les recommandations de ce site sont <strong>indépendantes et non sponsorisées</strong>.
+</div>
+
+    <!-- Barre de recherche -->
+    <div class="search-bar">
+      <input type="text" placeholder="Cherchez un article…">
+      <button>Rechercher</button>
+    </div>
+  </main>
+
+</body>
+</html>
