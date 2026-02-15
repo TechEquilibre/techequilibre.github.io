@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TechÉquilibre</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    /* Reset et base */
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+    body { display: flex; min-height: 100vh; background-color: #f9fafb; color: #1f2937; }
+
+    /* Menu latéral */
+    nav {
+      width: 220px;
+      background-color: #3b82f6;
+      color: #fff;
+      padding: 30px 20px;
+      flex-shrink: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    nav h2 { font-size: 1.8em; font-weight: 600; margin-bottom: 10px; }
+
+    nav a {
+      text-decoration: none;
+      color: #fff;
+      padding: 8px 0;
+      border-radius: 6px;
+      transition: background-color 0.2s;
+    }
+
+    nav a:hover { background-color: rgba(255,255,255,0.2); }
+
+    /* Contenu principal */
+    main {
+      flex-grow: 1;
+      padding: 50px 40px;
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+    }
+
+    main h1 { font-size: 2.4em; font-weight: 600; color: #111827; }
+    main h2 { font-size: 1.8em; font-weight: 600; color: #111827; margin-top: 20px; }
+    main p { font-size: 1.1em; line-height: 1.7; max-width: 700px; }
+
+    /* Styles pour les tableaux */
+    main table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 15px 0;
+      font-size: 1em;
+    }
+
+    main table th,
+    main table td {
+      border: 1px solid #ccc;
+      padding: 8px 12px;
+      text-align: left;
+    }
+
+    main table tr:nth-child(even) {
+      background-color: #f3f4f6;
+    }
+
+    main table th {
+      background-color: #e5e7eb;
+      font-weight: 600;
+    }
+
+    /* Barre de recherche */
+    .search-bar {
+      display: flex;
+      max-width: 500px;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+
+    .search-bar input[type="text"] {
+      flex-grow: 1;
+      padding: 12px 15px;
+      border: none;
+      font-size: 1em;
+      outline: none;
+    }
+
+    .search-bar button {
+      padding: 12px 20px;
+      border: none;
+      background-color: #2563eb;
+      color: #fff;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color 0.2s;
+    }
+
+    .search-bar button:hover { background-color: #1e40af; }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      body { flex-direction: column; }
+      nav { width: 100%; flex-direction: row; overflow-x: auto; gap: 15px; padding: 15px; }
+      nav h2 { display: none; }
+      nav a { flex-shrink: 0; padding: 10px 15px; }
+      main { padding: 30px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Menu latéral -->
+  <nav>
+    <h2>TechÉquilibre</h2>
+
+    <form action="recherche.html" method="get" style="display: flex; border: 1px solid #888; background-color: #fff8e1; border-radius: 8px; overflow: hidden;">
+      <input type="text" name="q" placeholder="Rechercher un article ..." 
+             style="flex: 1; padding: 8px 10px; border: none; outline: none; font-size: 0.9em; color: #333;">
+      <button type="submit" 
+              style="padding: 0 12px; border: none; background-color: #ff9800; color: white; cursor: pointer; font-size: 0.9em;">
+        🔍
+      </button>
+    </form>
+
+    <a href="#">Accueil</a>
+    <a href="#">À propos</a>
+    <a href="#">Contact</a>
+  </nav>
+
+<main>
+  <h1>Quel OS choisir en 2026&nbsp;?</h1>
+  
+  <div style="border: 1px solid #888; background-color: #fff8e1; padding: 10px 15px; font-size: 0.9em; color: #333; border-radius: 8px; margin: 15px 0; text-align: center; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+  <strong>Note :</strong> Toutes les recommandations de ce site sont <strong>indépendantes et non sponsorisées</strong>.
+</div>
+
+  <p>Aujourd’hui, il existe 3 familles de systèmes d’exploitation : Windows, macOS et Linux.</p>
+  <p>Dans cet article, nous nous focaliserons sur Windows et Linux. macOS demanderait un article à part entière, car il est presque impossible de changer le système d’exploitation sur les appareils Apple.</p>
+  <p>Nous allons donc entrer dans le vif du sujet : les caractéristiques de Windows, plus précisément Windows 10 et 11.</p>
+  <p>Bien que Microsoft ait officiellement arrêté le support de Windows 10, celui-ci est encore utilisé par des milliers de personnes dans le monde. Pour rappel, Windows 10 est sorti en 2015. Il peut donc fonctionner sur des machines relativement anciennes.</p>
+
+  <h2>Caractéristiques minimales pour Windows 10 :</h2>
+  <p>En 64 bits :</p>
+  <table>
+    <tr><td>Processeur</td><td>RAM</td><td>Stockage</td></tr>
+    <tr><td>1 GHz</td><td>2 Go</td><td>20 Go</td></tr>
+  </table>
+
+  <p>En 32 bits :</p>
+  <table>
+    <tr><td>Processeur</td><td>RAM</td><td>Stockage</td></tr>
+    <tr><td>1 GHz</td><td>1 Go</td><td>16 Go</td></tr>
+  </table>
+
+  <p>Cependant, malgré ces caractéristiques techniques minimales, je ne recommande pas d’utiliser Windows 10 sur un PC avec 4 Go de RAM ou moins, ou avec moins de 128 Go d’espace disque.</p>
+
+  <h2>Caractéristiques minimales pour Windows 11 :</h2>
+  <table>
+    <tr><td>Processeur</td><td>RAM</td><td>Stockage</td></tr>
+    <tr><td>Tous les processeurs sortis après 2020*</td><td>4 Go</td><td>64 Go</td></tr>
+  </table>
+
+  <p>*En réalité, Windows 11 nécessite un processeur 64 bits compatible, avec TPM 2.0 et Secure Boot. Certains processeurs plus anciens peuvent aussi fonctionner si ces critères sont remplis.</p>
+  <p>Cependant, si votre PC est déjà lent sous Windows 10, ou possède moins de 16 Go de RAM et/ou moins de 256 Go de stockage, il n’est pas conseillé de passer à Windows 11. Notez que Windows 11 ne prend pas en charge les machines 32 bits.</p>
+
+  <h2>Caractéristiques Linux :</h2>
+  <p>Passons maintenant aux systèmes d’exploitation Linux, oui systèmes au pluriel car il existe énormément de distributions différentes. Tous sont open source. Les OS Linux demandent généralement du matériel moins récent. Voici les 3 systèmes Linux les plus utilisés :</p>
+
+  <h3>Ubuntu :</h3>
+  <table>
+    <tr><td>Processeur</td><td>RAM</td><td>Stockage</td></tr>
+    <tr><td>1 GHz</td><td>2 Go</td><td>25 Go</td></tr>
+  </table>
+  <p>4 Go de RAM sont recommandées pour Ubuntu. Ainsi, Ubuntu nécessite un peu moins de RAM que Windows 10, mais en restant proche en termes de prise en main et d’apparence. 64 Go de stockage restent cependant le minimum pour pouvoir l’utiliser correctement. </p>
+
+  <h3>Linux Mint :</h3>
+  <table>
+    <tr><td>Processeur</td><td>RAM</td><td>Stockage</td></tr>
+    <tr><td>1 GHz</td><td>2 Go</td><td>20 Go</td></tr>
+  </table>
+  <p>Ayant des caractéristiques minimales très proches de celles d’Ubuntu, Mint reste un petit peu plus léger qu’Ubuntu tout en restant très proche de Windows en utilisation. Cependant, je recommande au moins 64 Go de stockage.</p>
+  <h3>Zorin OS :</h3>
+  <table>
+    <tr><td>Processeur</td><td>RAM</td><td>Stockage</td></tr>
+    <tr><td>1 GHz</td><td>2 Go</td><td>10 Go</td></tr>
+  </table>
+  <p>Zorin OS est fait pour ressembler à Windows 10 tout en étant plus léger, pour moi, c’est la meilleure option si vous voulez passer à un système d’exploitation Linux sans vous prendre la tête. Cependant, je continue de recommander au moins 4 Go de RAM.</p>
+  
+ 
+  <p>Et voici un petit bonus pour ceux qui ont des machines avec 4 Go de RAM ou moins, très peu de stockage (32 Go ou moins) et un processeur très peu puissant (Pentium, Intel celeron….)</p>
+  <h3>AntiX :</h3>
+  <table>
+    <tr><td>Processeur</td><td>RAM</td><td>Stockage</td></tr>
+    <tr><td>1 GHz</td><td>256 Mo</td><td>5 Go</td></tr>
+  </table>
+  <p>Bien que plus simple et un peu plus éloigné des Windows, AntiX reste une option extrêmement solide en 2026. Ces lignes sont d’ailleurs écrites sur un PC sous AntiX. C’est un système très léger et facile a prendre en main.
+
+Cependant, il y a un « mais » certaines applications peuvent ne pas être disponibles pour Linux (plutôt rare) mais peuvent aussi ne pas être disponible pour la distribution Linux que vous utilisez, par exemple Google Chrome ne marche pas sous AntiX(mais il existe de nombreuses alternatives comme Chromium  ). Donc, avant de choisir un Linux, vérifiez d’abord que les applications que vous utilisez sont disponibles ou s'il existe une alternative.  </p>
+  
+  
+  <h3>Conclusion :</h3>
+  
+  <p>Pour conclure, Windows 10 et 11 sont stables mais lourds pour du matériel ancien. Les distributions Linux sont plus légères et adaptées au vieux matériel. Avant d’acheter un PC, vérifiez si vous pouvez simplement changer d’OS pour ne pas dépenser inutilement.</p>
+
+</main>
+
+<script>
+  const toggleBtn = document.getElementById('toggleBtn');
+  const sidebar = document.getElementById('sidebar');
+
+  // Rétracter le menu entier
+  toggleBtn.addEventListener('click', () => {
+    sidebar.classList.toggle('collapsed');
+    toggleBtn.classList.toggle('collapsed');
+  });
+
+  // Menu déroulant par section
+  document.querySelectorAll('#sidebar li > span').forEach(title => {
+    title.addEventListener('click', () => {
+      const parent = title.parentElement;
+      parent.classList.toggle('open');
+    });
+  });
+</script>
+
+</body>
+</html>
+
