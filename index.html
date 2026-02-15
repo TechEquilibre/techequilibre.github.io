@@ -5,12 +5,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>TechÉquilibre</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
-  <style>
-    /* Reset et base */
-    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
-    body { display: flex; min-height: 100vh; background-color: #f9fafb; color: #1f2937; }
 
-    /* Menu latéral */
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+
+    body {
+      display: flex;
+      min-height: 100vh;
+      background-color: #f9fafb;
+      color: #1f2937;
+    }
+
+    /* MENU */
     nav {
       width: 220px;
       background-color: #3b82f6;
@@ -20,9 +26,10 @@
       display: flex;
       flex-direction: column;
       gap: 20px;
+      position: relative;
     }
 
-    nav h2 { font-size: 1.8em; font-weight: 600; margin-bottom: 10px; }
+    nav h2 { font-size: 1.8em; font-weight: 600; }
 
     nav a {
       text-decoration: none;
@@ -34,7 +41,7 @@
 
     nav a:hover { background-color: rgba(255,255,255,0.2); }
 
-    /* Contenu principal */
+    /* CONTENU */
     main {
       flex-grow: 1;
       padding: 50px 40px;
@@ -45,90 +52,98 @@
 
     main h1 { font-size: 2.4em; font-weight: 600; color: #111827; }
     main h2 { font-size: 1.8em; font-weight: 600; color: #111827; margin-top: 20px; }
-    }
 
-    main table th,
-    main table td {
-      border: 1px solid #ccc;
-      padding: 8px 12px;
-      text-align: left;
-    }
-
-    main table tr:nth-child(even) {
-      background-color: #f3f4f6;
-    }
-
-    main table th {
-      background-color: #e5e7eb;
-      font-weight: 600;
-    }
-
-    /* Barre de recherche */
+    /* SEARCH BAR */
     .search-bar {
+      position: relative;
       display: flex;
-      max-width: 500px;
       border-radius: 8px;
       overflow: hidden;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      background-color: #fff8e1;
     }
 
-    .search-bar input[type="text"] {
-      flex-grow: 1;
-      padding: 12px 15px;
+    .search-bar input {
+      flex: 1;
+      padding: 10px;
       border: none;
-      font-size: 1em;
       outline: none;
+      font-size: 0.9em;
     }
 
-    .search-bar button {
-      padding: 12px 20px;
-      border: none;
-      background-color: #2563eb;
-      color: #fff;
-      font-weight: 600;
+    #suggestions {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      width: 100%;
+      background: white;
+      border-radius: 8px;
+      margin-top: 5px;
+      max-height: 250px;
+      overflow-y: auto;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+      z-index: 999;
+    }
+
+    .suggestion-item {
+      padding: 10px;
+      font-size: 0.85em;
+      border-bottom: 1px solid #eee;
+    }
+
+    .suggestion-item:hover {
+      background: #f3f4f6;
       cursor: pointer;
-      transition: background-color 0.2s;
     }
 
-    .search-bar button:hover { background-color: #1e40af; }
+    .suggestion-item a {
+      text-decoration: none;
+      color: #1f2937;
+      display: block;
+    }
 
     /* Responsive */
     @media (max-width: 768px) {
       body { flex-direction: column; }
       nav { width: 100%; flex-direction: row; overflow-x: auto; gap: 15px; padding: 15px; }
       nav h2 { display: none; }
-      nav a { flex-shrink: 0; padding: 10px 15px; }
       main { padding: 30px 20px; }
     }
   </style>
 </head>
+
 <body>
 
-
-  <!-- Menu latéral -->
+  <!-- MENU -->
   <nav>
+
     <h2>TechÉquilibre</h2>
 
-    <form action="recherche.html" method="get" style="display: flex; border: 1px solid #888; background-color: #fff8e1; border-radius: 8px; overflow: hidden;">
-      <input type="text" name="q" placeholder="Rechercher un article ..." 
-             style="flex: 1; padding: 8px 10px; border: none; outline: none; font-size: 0.9em; color: #333;">
-      <button type="submit" 
-              style="padding: 0 12px; border: none; background-color: #ff9800; color: white; cursor: pointer; font-size: 0.9em;">
-        🔍
-      </button>
-    </form>
+    <!-- BARRE INTELLIGENTE -->
+    <div class="search-bar">
+      <input type="text" id="searchInput" placeholder="Rechercher un article ...">
+      <div id="suggestions"></div>
+    </div>
 
     <a href="#">Accueil</a>
-    <li class="dropdown">
-      <a href="#" id="toggle-dropdown">Articles récents ▼</a>
-      <ul class="dropdown-menu">
-        <li><a href="articles/quel-os-choisir-en-2026.html">Quel OS choisir en 2026</a></li>
-      </ul>
-    </li>
-    <br>
+    <a href="articles/quel-os-choisir-en-2026.html">Quel OS choisir en 2026</a>
     <a href="#">À propos</a>
     <a href="#">Contact</a>
+
   </nav>
+
+  <!-- CONTENU -->
+  <main>
+    <h1>Bienvenue sur TechÉquilibre</h1>
+    <p>Contenu de ton site éducatif tech.</p>
+  </main>
+
+  <!-- SCRIPTS -->
+  <script src="js/lunr.min.js"></script>
+  <script src="js/search-engine.js"></script>
+
+</body>
+</html>
+
 
   <!-- Contenu principal -->
   <main>
