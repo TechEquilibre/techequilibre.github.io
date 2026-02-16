@@ -7,35 +7,39 @@ fetch("data/articles.json")
       this.field("title")
       this.field("content")
 
-      data.forEach(doc => {
-        this.add(doc)
-      })
+      data.forEach(doc => this.add(doc))
     })
 
-    const input = document.getElementById("searchInput")
-    const suggestions = document.getElementById("suggestions")
+    const inputs = document.querySelectorAll(".searchInput")
 
-    input.addEventListener("input", function () {
-      const query = input.value.trim()
+    inputs.forEach(input => {
 
-      if (query.length < 2) {
+      const suggestions = input.parentElement.querySelector(".suggestions")
+
+      input.addEventListener("input", function () {
+        const query = input.value.trim()
+
+        if (query.length < 2) {
+          suggestions.innerHTML = ""
+          return
+        }
+
+        const results = idx.search(query)
         suggestions.innerHTML = ""
-        return
-      }
 
-      const results = idx.search(query)
-      suggestions.innerHTML = ""
+        results.slice(0,5).forEach(result => {
+          const article = data.find(a => a.id === result.ref)
 
-      results.forEach(result => {
-        const article = data.find(a => a.id === result.ref)
+          const div = document.createElement("div")
+          div.className = "suggestion-item"
+          div.innerHTML = `<a href="${article.url}">${article.title}</a>`
 
-        const div = document.createElement("div")
-        div.className = "suggestion-item"
-        div.innerHTML = `<a href="${article.url}">${article.title}</a>`
-
-        suggestions.appendChild(div)
+          suggestions.appendChild(div)
+        })
       })
+
     })
+
   })
   .catch(error => {
     console.error("Erreur chargement articles :", error)
