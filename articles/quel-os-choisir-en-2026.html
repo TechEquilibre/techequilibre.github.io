@@ -141,62 +141,62 @@
 Cependant, il y a un « mais » certaines applications peuvent ne pas être disponibles pour Linux (plutôt rare) mais peuvent aussi ne pas être disponible pour la distribution Linux que vous utilisez, par exemple Google Chrome ne marche pas sous AntiX(mais il existe de nombreuses alternatives comme Chromium  ). Donc, avant de choisir un Linux, vérifiez d’abord que les applications que vous utilisez sont disponibles ou s'il existe une alternative.  </p>
   
   
-  <h3>Conclusion :</h3>
+  <h2>Conclusion :</h2>
   
   <p>Pour conclure, Windows 10 et 11 sont stables mais lourds pour du matériel ancien. Les distributions Linux sont plus légères et adaptées au vieux matériel. Avant d’acheter un PC, vérifiez si vous pouvez simplement changer d’OS pour ne pas dépenser inutilement.</p>
 
 </main>
 
-  <!-- JS RECHERCHE LOCALE -->
-  <script>
-    // Charger les articles
-    fetch('data/articles.json')
-      .then(res => res.json())
-      .then(data => {
-        const inputs = document.querySelectorAll(".searchInput");
+<!-- JS RECHERCHE LOCALE -->
+<script>
+  // Charger les articles
+  fetch('data/articles.json')
+    .then(res => res.json())
+    .then(data => {
+      const inputs = document.querySelectorAll(".searchInput");
 
-        // Tolérance simple aux fautes (1 caractère)
-        function simpleMatch(str, query){
-          str = str.toLowerCase(); query = query.toLowerCase();
-          if(str.includes(query)) return true;
-          let errors = 0;
-          for(let i=0;i<Math.min(str.length,query.length);i++){
-            if(str[i]!==query[i]) errors++;
-            if(errors>1) return false;
-          }
-          return true;
+      // Tolérance simple aux fautes (1 caractère)
+      function simpleMatch(str, query){
+        str = str.toLowerCase(); query = query.toLowerCase();
+        if(str.includes(query)) return true;
+        let errors = 0;
+        for(let i=0;i<Math.min(str.length,query.length);i++){
+          if(str[i]!==query[i]) errors++;
+          if(errors>1) return false;
         }
+        return true;
+      }
 
-        // Vérifier correspondance avec titre, description ou keywords
-        function matchArticle(article, query){
-          if(simpleMatch(article.title, query)) return true;
-          if(simpleMatch(article.description, query)) return true;
-          for(let kw of article.keywords){
-            if(simpleMatch(kw, query)) return true;
-          }
-          return false;
+      // Vérifier correspondance avec titre, description ou keywords
+      function matchArticle(article, query){
+        if(simpleMatch(article.title, query)) return true;
+        if(simpleMatch(article.description, query)) return true;
+        for(let kw of article.keywords){
+          if(simpleMatch(kw, query)) return true;
         }
+        return false;
+      }
 
-        inputs.forEach(input=>{
-          const suggestions = input.parentElement.querySelector(".suggestions");
-          input.addEventListener("input", ()=>{
-            const query = input.value.trim();
-            suggestions.innerHTML='';
-            if(query.length<2) return;
+      inputs.forEach(input=>{
+        const suggestions = input.parentElement.querySelector(".suggestions");
+        input.addEventListener("input", ()=>{
+          const query = input.value.trim();
+          suggestions.innerHTML='';
+          if(query.length<2) return;
 
-            const results = data.filter(a=>matchArticle(a, query));
+          const results = data.filter(a=>matchArticle(a, query));
 
-            results.slice(0,5).forEach(article=>{
-              const div = document.createElement("div");
-              div.className="suggestion-item";
-              div.innerHTML=`<a href="${article.url}"><strong>${article.title}</strong><br><small>${article.description}</small></a>`;
-              suggestions.appendChild(div);
-            });
+          results.slice(0,5).forEach(article=>{
+            const div = document.createElement("div");
+            div.className="suggestion-item";
+            div.innerHTML=`<a href="${article.url}"><strong>${article.title}</strong><br><small>${article.description}</small></a>`;
+            suggestions.appendChild(div);
           });
         });
-      })
-      .catch(err=>console.error("Erreur chargement articles :", err));
-  </script>
+      });
+    })
+    .catch(err=>console.error("Erreur chargement articles :", err));
+</script>
 
 </body>
 </html>
