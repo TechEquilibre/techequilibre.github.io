@@ -175,7 +175,7 @@ Cependant, il y a un « mais » certaines applications peuvent ne pas être dis
 <!-- JS RECHERCHE LOCALE -->
 <script>
   // Charger les articles
-  fetch('data/articles.json')
+  fetch('../data/articles.json')
     .then(res => res.json())
     .then(data => {
       const inputs = document.querySelectorAll(".searchInput");
