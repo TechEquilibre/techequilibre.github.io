@@ -4,84 +4,131 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>TechÉquilibre</title>
-  <link rel="stylesheet" href="css/search.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+
+  <!-- CSS principal -->
+  <style>
+    * { margin:0; padding:0; box-sizing:border-box; font-family:'Inter', sans-serif; }
+    body { display:flex; min-height:100vh; background:#f9fafb; color:#1f2937; }
+    
+    /* MENU LATÉRAL */
+    nav { width:220px; background:#3b82f6; color:#fff; padding:30px 20px; display:flex; flex-direction:column; gap:20px; position:relative; }
+    nav h2 { font-size:1.8em; }
+    nav a { text-decoration:none; color:#fff; padding:8px 0; border-radius:6px; transition:background 0.2s; }
+    nav a:hover { background: rgba(255,255,255,0.2); }
+    nav ul { list-style:none; padding-left:0; }
+    nav li { margin:5px 0; }
+
+    /* CONTENU */
+    main { flex-grow:1; padding:50px 40px; display:flex; flex-direction:column; gap:30px; }
+    main h1 { font-size:2.4em; color:#111827; }
+
+    /* BARRE DE RECHERCHE */
+    .search-bar { position:relative; max-width:500px; margin:20px 0; }
+    .search-bar input { width:100%; padding:10px; border:none; outline:none; border-radius:6px; font-size:0.9em; }
+    .suggestions {
+      background:white;
+      border-radius:6px;
+      box-shadow:0 4px 10px rgba(0,0,0,0.15);
+      margin-top:5px;
+      max-height:250px;
+      overflow-y:auto;
+      position:absolute;
+      width:100%;
+      z-index:999;
+    }
+    .suggestion-item { padding:10px; border-bottom:1px solid #eee; cursor:pointer; }
+    .suggestion-item:hover { background:#f3f4f6; }
+    .suggestion-item a { text-decoration:none; color:#1f2937; display:block; }
+
+    /* RESPONSIVE */
+    @media(max-width:768px){
+      body{flex-direction:column;}
+      nav{width:100%; flex-direction:row; gap:15px; padding:15px;}
+      nav h2{display:none;}
+      nav a{flex-shrink:0;padding:10px 15px;}
+      main{padding:30px 20px;}
+    }
+  </style>
 </head>
+
 <body>
 
-<nav>
-  <h2>TechÉquilibre</h2>
+  <!-- MENU LATÉRAL -->
+  <nav>
+    <h2>TechÉquilibre</h2>
 
-  <!-- BARRE DE RECHERCHE -->
-  <div class="search-bar">
-    <input type="text" class="searchInput" placeholder="Rechercher un article...">
-    <div class="suggestions"></div>
-  </div>
+    <!-- BARRE DE RECHERCHE -->
+    <div class="search-bar">
+      <input type="text" class="searchInput" placeholder="Rechercher un article...">
+      <div class="suggestions"></div>
+    </div>
 
-  <a href="#">Accueil</a>
-  <a href="#">Articles récents</a>
-  <a href="#">À propos</a>
-  <a href="#">Contact</a>
-</nav>
+    <a href="#">Accueil</a>
+    <a href="#">Articles récents</a>
+    <a href="#">À propos</a>
+    <a href="#">Contact</a>
+  </nav>
 
-<main>
-  <h1>Bienvenue sur TechÉquilibre</h1>
-  <p>
-    TechÉquilibre vous aide à comprendre l’informatique simplement. Choisissez le bon système d’exploitation, adaptez votre matériel à vos vrais besoins et adoptez une approche responsable et durable du numérique.
-  </p>
-  <div class="note">
-    <strong>Note :</strong> Toutes les recommandations de ce site sont <strong>indépendantes et non sponsorisées</strong>.
-  </div>
-</main>
+  <!-- CONTENU -->
+  <main>
+    <h1>Bienvenue sur TechÉquilibre</h1>
+    <p>TechÉquilibre vous aide à comprendre l’informatique simplement.</p>
+    <div style="border:1px solid #888; background:#fff8e1; padding:10px; border-radius:8px;">
+      <strong>Note :</strong> toutes les recommandations sont indépendantes.
+    </div>
+  </main>
 
-<!-- JS RECHERCHE LOCALE -->
-<script>
-fetch('data/articles.json')
-.then(res => res.json())
-.then(data => {
-  const inputs = document.querySelectorAll(".searchInput");
+  <!-- JS RECHERCHE LOCALE -->
+  <script>
+    // Charger les articles
+    fetch('data/articles.json')
+      .then(res => res.json())
+      .then(data => {
+        const inputs = document.querySelectorAll(".searchInput");
 
-  function simpleMatch(str, query){
-    str = str.toLowerCase(); query = query.toLowerCase();
-    if(str.includes(query)) return true;
-    let errors = 0;
-    for(let i=0;i<Math.min(str.length,query.length);i++){
-      if(str[i]!==query[i]) errors++;
-      if(errors>1) return false;
-    }
-    return true;
-  }
+        // Tolérance simple aux fautes (1 caractère)
+        function simpleMatch(str, query){
+          str = str.toLowerCase(); query = query.toLowerCase();
+          if(str.includes(query)) return true;
+          let errors = 0;
+          for(let i=0;i<Math.min(str.length,query.length);i++){
+            if(str[i]!==query[i]) errors++;
+            if(errors>1) return false;
+          }
+          return true;
+        }
 
-  function matchArticle(article, query){
-    if(simpleMatch(article.title, query)) return true;
-    if(simpleMatch(article.description, query)) return true;
-    if(article.keywords){
-      for(let kw of article.keywords){
-        if(simpleMatch(kw, query)) return true;
-      }
-    }
-    return false;
-  }
+        // Vérifier correspondance avec titre, description ou keywords
+        function matchArticle(article, query){
+          if(simpleMatch(article.title, query)) return true;
+          if(simpleMatch(article.description, query)) return true;
+          for(let kw of article.keywords){
+            if(simpleMatch(kw, query)) return true;
+          }
+          return false;
+        }
 
-  inputs.forEach(input=>{
-    const suggestions = input.parentElement.querySelector(".suggestions");
-    input.addEventListener("input", ()=>{
-      const query = input.value.trim();
-      suggestions.innerHTML='';
-      if(query.length<2) return;
+        inputs.forEach(input=>{
+          const suggestions = input.parentElement.querySelector(".suggestions");
+          input.addEventListener("input", ()=>{
+            const query = input.value.trim();
+            suggestions.innerHTML='';
+            if(query.length<2) return;
 
-      const results = data.filter(a=>matchArticle(a, query));
+            const results = data.filter(a=>matchArticle(a, query));
 
-      results.slice(0,5).forEach(article=>{
-        const div = document.createElement("div");
-        div.className="suggestion-item";
-        div.innerHTML=`<a href="${article.url}"><strong>${article.title}</strong><br><small>${article.description}</small></a>`;
-        suggestions.appendChild(div);
-      });
-    });
-  });
-})
-.catch(err => console.error("Erreur chargement articles :", err));
-</script>
+            results.slice(0,5).forEach(article=>{
+              const div = document.createElement("div");
+              div.className="suggestion-item";
+              div.innerHTML=`<a href="${article.url}"><strong>${article.title}</strong><br><small>${article.description}</small></a>`;
+              suggestions.appendChild(div);
+            });
+          });
+        });
+      })
+      .catch(err=>console.error("Erreur chargement articles :", err));
+  </script>
 
 </body>
 </html>
