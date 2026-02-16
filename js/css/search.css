@@ -1,5 +1,61 @@
-<style>
-.search-bar { position: relative; max-width:500px; margin:20px 0; }
+/* ================================================
+   MENU LATÉRAL
+================================================ */
+nav {
+  width: 220px;
+  background-color: #3b82f6;
+  color: #fff;
+  padding: 30px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  position: relative;
+}
+
+nav h2 {
+  font-size: 1.8em;
+}
+
+nav a {
+  text-decoration: none;
+  color: #fff;
+  padding: 8px 0;
+  border-radius: 6px;
+  transition: background-color 0.2s;
+}
+
+nav a:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+nav ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+nav li {
+  margin: 5px 0;
+}
+
+/* ================================================
+   BARRE DE RECHERCHE
+================================================ */
+.search-bar {
+  position: relative;
+  max-width: 500px;
+  margin: 20px 0;
+}
+
+.search-bar input {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  outline: none;
+  border-radius: 6px;
+  font-size: 0.9em;
+}
+
+/* Suggestions */
 .suggestions {
   background: white;
   border-radius: 6px;
@@ -11,15 +67,57 @@
   width: 100%;
   z-index: 999;
 }
+
 .suggestion-item {
   padding: 10px;
   border-bottom: 1px solid #eee;
   cursor: pointer;
 }
-.suggestion-item:hover { background: #f3f4f6; }
+
+.suggestion-item:hover {
+  background: #f3f4f6;
+}
+
 .suggestion-item a {
   text-decoration: none;
   color: #1f2937;
   display: block;
 }
-</style>
+
+/* ================================================
+   TABLEAUX
+================================================ */
+main table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 15px 0;
+  font-size: 1em;
+}
+
+main table th,
+main table td {
+  border: 1px solid #ccc;
+  padding: 8px 12px;
+  text-align: left;
+}
+
+main table tr:nth-child(even) {
+  background-color: #f3f4f6;
+}
+
+main table th {
+  background-color: #e5e7eb;
+  font-weight: 600;
+}
+
+/* ================================================
+   RESPONSIVE
+================================================ */
+@media(max-width:768px){
+  body{flex-direction:column;}
+  nav{width:100%; flex-direction:row; gap:15px; padding:15px;}
+  nav h2{display:none;}
+  nav a{flex-shrink:0; padding:10px 15px;}
+  main{padding:30px 20px;}
+}
+
