@@ -1,9 +1,9 @@
 document.addEventListener("DOMContentLoaded", function() {
-  fetch("../data/articles.json")
+  fetch("data/articles.json") // chemin relatif depuis index.html
     .then(res => res.json())
     .then(data => {
 
-      // Index Lunr
+      // Création index Lunr
       const idx = lunr(function() {
         this.ref("id")
         this.field("title")
@@ -11,7 +11,6 @@ document.addEventListener("DOMContentLoaded", function() {
         data.forEach(doc => this.add(doc))
       })
 
-      // Barre de recherche
       const input = document.querySelector(".searchInput")
       const suggestions = input.parentElement.querySelector(".suggestions")
 
