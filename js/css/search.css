@@ -1,123 +1,89 @@
-/* ================================================
-   MENU LATÉRAL
-================================================ */
-nav {
-  width: 220px;
-  background-color: #3b82f6;
-  color: #fff;
-  padding: 30px 20px;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  position: relative;
-}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TechÉquilibre</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/search.css">
+</head>
+<body>
 
-nav h2 {
-  font-size: 1.8em;
-}
+<!-- MENU LATÉRAL -->
+<nav>
+  <h2>TechÉquilibre</h2>
 
-nav a {
-  text-decoration: none;
-  color: #fff;
-  padding: 8px 0;
-  border-radius: 6px;
-  transition: background-color 0.2s;
-}
+  <!-- Barre de recherche -->
+  <div class="search-bar">
+    <input type="text" class="searchInput" placeholder="Rechercher un article ...">
+    <div class="suggestions"></div>
+  </div>
 
-nav a:hover {
-  background-color: rgba(255, 255, 255, 0.2);
-}
+  <a href="#">Accueil</a>
 
-nav ul {
-  list-style: none;
-  padding-left: 0;
-}
+  <!-- Dropdown Articles récents -->
+  <div class="dropdown">
+    <a href="#" id="toggle-dropdown">Articles récents ▼</a>
+    <ul class="dropdown-menu" style="display:none; list-style:none; padding-left:0; margin-top:5px;">
+      <li><a href="/articles/quel-os-choisir-en-2026.html">Quel OS choisir en 2026</a></li>
+      <li><a href="/articles/materiel-pc-2026.html">Matériel PC 2026</a></li>
+    </ul>
+  </div>
 
-nav li {
-  margin: 5px 0;
-}
+  <a href="#">À propos</a>
+  <a href="#">Contact</a>
+</nav>
 
-/* ================================================
-   BARRE DE RECHERCHE
-================================================ */
-.search-bar {
-  position: relative;
-  max-width: 500px;
-  margin: 20px 0;
-}
+<!-- CONTENU PRINCIPAL -->
+<main>
+  <h1>Bienvenue sur TechÉquilibre</h1>
+  <p>
+    TechÉquilibre vous aide à comprendre l’informatique simplement. Choisissez le bon système d’exploitation, adaptez votre matériel à vos vrais besoins et adoptez une approche responsable et durable du numérique.
+  </p>
 
-.search-bar input {
-  width: 100%;
-  padding: 10px;
-  border: none;
-  outline: none;
-  border-radius: 6px;
-  font-size: 0.9em;
-}
+  <div class="note">
+    <strong>Note :</strong> recommandations indépendantes et non sponsorisées.
+  </div>
 
-/* Suggestions */
-.suggestions {
-  background: white;
-  border-radius: 6px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
-  margin-top: 5px;
-  max-height: 250px;
-  overflow-y: auto;
-  position: absolute;
-  width: 100%;
-  z-index: 999;
-}
+  <!-- Exemple de tableau -->
+  <table>
+    <thead>
+      <tr>
+        <th>OS</th>
+        <th>Avantages</th>
+        <th>Inconvénients</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Windows</td>
+        <td>Compatibilité, jeux</td>
+        <td>Virus fréquents</td>
+      </tr>
+      <tr>
+        <td>Linux</td>
+        <td>Open source, sécurité</td>
+        <td>Moins de logiciels</td>
+      </tr>
+    </tbody>
+  </table>
+</main>
 
-.suggestion-item {
-  padding: 10px;
-  border-bottom: 1px solid #eee;
-  cursor: pointer;
-}
+<!-- SCRIPTS -->
+<script>
+  // Dropdown menu Articles récents
+  const toggle = document.getElementById("toggle-dropdown");
+  const menu = toggle.nextElementSibling;
 
-.suggestion-item:hover {
-  background: #f3f4f6;
-}
+  toggle.addEventListener("click", (e) => {
+    e.preventDefault();
+    menu.style.display = menu.style.display === "block" ? "none" : "block";
+  });
+</script>
 
-.suggestion-item a {
-  text-decoration: none;
-  color: #1f2937;
-  display: block;
-}
+<!-- Barre de recherche peut être reliée à Lunr.js ou Google CSE -->
+<script src="https://unpkg.com/lunr/lunr.js"></script>
+<script src="js/search-engine.js"></script>
 
-/* ================================================
-   TABLEAUX
-================================================ */
-main table {
-  width: 100%;
-  border-collapse: collapse;
-  margin: 15px 0;
-  font-size: 1em;
-}
-
-main table th,
-main table td {
-  border: 1px solid #ccc;
-  padding: 8px 12px;
-  text-align: left;
-}
-
-main table tr:nth-child(even) {
-  background-color: #f3f4f6;
-}
-
-main table th {
-  background-color: #e5e7eb;
-  font-weight: 600;
-}
-
-/* ================================================
-   RESPONSIVE
-================================================ */
-@media(max-width:768px){
-  body{flex-direction:column;}
-  nav{width:100%; flex-direction:row; gap:15px; padding:15px;}
-  nav h2{display:none;}
-  nav a{flex-shrink:0; padding:10px 15px;}
-  main{padding:30px 20px;}
-}
-
+</body>
+</html>
