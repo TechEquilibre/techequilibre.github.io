@@ -5,7 +5,7 @@ fetch("../data/articles.json")
     const idx = lunr(function () {
       this.ref("id")
       this.field("title")
-      this.field("content")
+      this.field("description")
 
       data.forEach(doc => this.add(doc))
     })
@@ -32,7 +32,7 @@ fetch("../data/articles.json")
 
           const div = document.createElement("div")
           div.className = "suggestion-item"
-          div.innerHTML = `<a href="${article.url}">${article.title}</a>`
+          div.innerHTML = `<a href="${article.url}">${article.title}</a><p>${article.description}</p>`
 
           suggestions.appendChild(div)
         })
