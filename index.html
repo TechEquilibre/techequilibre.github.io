@@ -4,60 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>TechÉquilibre</title>
- <!-- Début style et menu article -->
-<style>
-  /* Reset & base */
-  * { margin:0; padding:0; box-sizing:border-box; font-family:'Inter',sans-serif; }
-  body { background:#f9fafb; color:#1f2937; line-height:1.5; }
-
-  /* Menu latéral */
-  nav { width:220px; background:#3b82f6; color:#fff; padding:20px; float:left; margin-right:20px; border-radius:8px; }
-  nav h2 { font-size:1.6em; margin-bottom:15px; }
-  nav a { display:block; color:#fff; text-decoration:none; padding:6px 0; border-radius:4px; transition:0.2s; }
-  nav a:hover { background:rgba(255,255,255,0.2); }
-
-  /* Contenu principal */
-  main { margin-left:240px; padding:20px; background:#fff; border-radius:8px; box-shadow:0 2px 6px rgba(0,0,0,0.1); }
-
-  /* Notes */
-  .note { border:1px solid #888; background:#fff8e1; padding:10px; border-radius:8px; margin:15px 0; }
-
-  /* Tableaux */
-  table { width:100%; border-collapse:collapse; margin:15px 0; font-size:1em; }
-  th, td { border:1px solid #ccc; padding:8px 12px; text-align:left; }
-  tr:nth-child(even) { background:#f3f4f6; }
-  th { background:#e5e7eb; font-weight:600; }
-
-  /* Barre de recherche dans le menu */
-  .search-bar { margin:10px 0; position:relative; }
-  .search-bar input { width:100%; padding:8px; border:none; border-radius:4px; outline:none; font-size:0.9em; }
-  .suggestions { position:absolute; top:100%; left:0; width:100%; background:#fff; max-height:200px; overflow-y:auto; border:1px solid #ccc; border-radius:4px; z-index:10; }
-  .suggestion-item { padding:6px 10px; font-size:0.9em; border-bottom:1px solid #eee; }
-  .suggestion-item a { text-decoration:none; color:#1f2937; display:block; }
-  .suggestion-item:hover { background:#f3f4f6; cursor:pointer; }
-
-  /* Responsive simple */
-  @media(max-width:768px){ 
-    nav { float:none; width:100%; margin-bottom:20px; }
-    main { margin-left:0; }
-  }
-</style>
-
-<!-- MENU LATÉRAL -->
-<nav>
-  <h2>TechÉquilibre</h2>
-
-  <!-- Barre de recherche (optionnelle) -->
-  <div class="search-bar">
-    <input type="text" class="searchInput" placeholder="Rechercher un article...">
-    <div class="suggestions"></div>
-  </div>
-
-  <a href="/index.html">Accueil</a>
-  <a href="/articles.html">Articles récents</a>
-  <a href="/a-propos.html">À propos</a>
-  <a href="/contact.html">Contact</a>
-</nav>
+  <link rel="stylesheet" href="css/search.css">
 </head>
 <body>
 
