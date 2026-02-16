@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Articles récents - TechÉquilibre</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 2rem; background: #f9f9f9; }
+        h1 { color: #222; }
+        .article { background: #fff; padding: 1rem; margin-bottom: 1rem; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        .article h2 { margin: 0 0 0.5rem 0; }
+        .article p { margin: 0.5rem 0; }
+        .date { font-size: 0.85rem; color: #666; }
+    </style>
+</head>
+<body>
+    <h1>Articles récents</h1>
+    <div id="articles-list"></div>
+
+    <script>
+        fetch('articles.json')
+            .then(response => response.json())
+            .then(data => {
+                // Trier par date décroissante
+                data.sort((a, b) => new Date(b.date) - new Date(a.date));
+
+                const container = document.getElementById('articles-list');
+                data.forEach(article => {
+                    const div = document.createElement('div');
+                    div.className = 'article';
+                    div.innerHTML = `
+                        <h2><a href="${article.lien}">${article.titre}</a></h2>
+                        <p class="date">${article.date}</p>
+                        <p>${article.resume}</p>
+                    `;
+                    container.appendChild(div);
+                });
+            })
+            .catch(err => console.error('Erreur chargement articles:', err));
+    </script>
+</body>
+</html>
