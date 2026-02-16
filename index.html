@@ -104,9 +104,9 @@
   <h2>TechÉquilibre</h2>
 
   <div class="search-bar">
-    <input type="text" id="searchInput" placeholder="Rechercher un article ...">
-    <div id="suggestions"></div>
-  </div>
+  <input type="text" class="searchInput" placeholder="Rechercher un article ...">
+  <div class="suggestions"></div>
+</div>
 
   <a href="#">Accueil</a>
   <a href="articles/quel-os-choisir-en-2026.html">Quel OS choisir en 2026</a>
@@ -129,6 +129,11 @@
 
 <script src="https://unpkg.com/lunr/lunr.js"></script>
 <script src="js/search-engine.js"></script>
+
+<div class="search-bar" style="max-width:500px;">
+  <input type="text" class="searchInput" placeholder="Rechercher un article...">
+  <div class="suggestions"></div>
+</div>
 
 </body>
 </html>
