@@ -10,10 +10,10 @@ fetch("../data/articles.json")
       data.forEach(doc => this.add(doc))
     })
 
+    // Sélectionne TOUTES les barres de recherche
     const inputs = document.querySelectorAll(".searchInput")
 
     inputs.forEach(input => {
-
       const suggestions = input.parentElement.querySelector(".suggestions")
 
       input.addEventListener("input", function () {
@@ -27,7 +27,7 @@ fetch("../data/articles.json")
         const results = idx.search(query)
         suggestions.innerHTML = ""
 
-        results.slice(0, 5).forEach(result => {
+        results.slice(0,5).forEach(result => {
           const article = data.find(a => a.id === result.ref)
 
           const div = document.createElement("div")
@@ -37,10 +37,7 @@ fetch("../data/articles.json")
           suggestions.appendChild(div)
         })
       })
-
     })
 
   })
-  .catch(error => {
-    console.error("Erreur chargement articles :", error)
-  })
+  .catch(error => console.error("Erreur chargement articles :", error))
