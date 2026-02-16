@@ -27,7 +27,7 @@ fetch("../data/articles.json")
         const results = idx.search(query)
         suggestions.innerHTML = ""
 
-        results.slice(0,5).forEach(result => {
+        results.slice(0, 5).forEach(result => {
           const article = data.find(a => a.id === result.ref)
 
           const div = document.createElement("div")
