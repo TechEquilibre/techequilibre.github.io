@@ -6,95 +6,50 @@
 <title>TechÉquilibre</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
 <style>
-  * { margin:0; padding:0; box-sizing:border-box; font-family:'Inter', sans-serif; }
-
-  body { display:flex; min-height:100vh; background:#f9fafb; color:#1f2937; }
-
-  /* MENU LATÉRAL */
-  nav {
-    width:220px;
-    background:#3b82f6;
-    color:#fff;
-    padding:30px 20px;
-    display:flex;
-    flex-direction:column;
-    gap:20px;
-  }
-
-  nav h2 { font-size:1.8em; }
-
-  nav a {
-    text-decoration:none;
-    color:#fff;
-    padding:8px 0;
-    border-radius:6px;
-    transition: background 0.2s;
-  }
-  nav a:hover { background: rgba(255,255,255,0.2); }
-
-  nav ul { list-style:none; padding-left:0; }
-  nav li { margin:5px 0; }
-
-  /* CONTENU */
-  main {
-    flex-grow:1;
-    padding:50px 40px;
-    display:flex;
-    flex-direction:column;
-    gap:30px;
-  }
-
-  main h1 { font-size:2.4em; color:#111827; }
-
-  /* BARRE DE RECHERCHE */
-  .search-bar { position:relative; display:flex; width:100%; max-width:500px; border-radius:8px; overflow:hidden; background:#fff8e1; }
-  .search-bar input { flex:1; padding:10px; border:none; outline:none; font-size:0.9em; }
-  .suggestions { position:absolute; top:100%; left:0; width:100%; background:#fff; border-radius:8px; margin-top:5px; max-height:250px; overflow-y:auto; box-shadow:0 4px 10px rgba(0,0,0,0.15); z-index:999; }
-  .suggestion-item { padding:10px; border-bottom:1px solid #eee; font-size:0.9em; }
-  .suggestion-item a { text-decoration:none; color:#1f2937; display:block; }
-  .suggestion-item:hover { background:#f3f4f6; cursor:pointer; }
-
-  /* RESPONSIVE */
-  @media(max-width:768px) {
-    body { flex-direction:column; }
-    nav { width:100%; flex-direction:row; gap:15px; padding:15px; }
-    nav h2 { display:none; }
-    nav a { flex-shrink:0; padding:10px 15px; }
-    main { padding:30px 20px; }
-  }
+* { margin:0; padding:0; box-sizing:border-box; font-family:'Inter', sans-serif; }
+body { display:flex; min-height:100vh; background:#f9fafb; color:#1f2937; }
+nav { width:220px; background:#3b82f6; color:#fff; padding:30px 20px; display:flex; flex-direction:column; gap:20px; }
+nav h2 { font-size:1.8em; }
+nav a { text-decoration:none; color:#fff; padding:8px 0; border-radius:6px; transition: background 0.2s; }
+nav a:hover { background: rgba(255,255,255,0.2); }
+nav ul { list-style:none; padding-left:0; }
+nav li { margin:5px 0; }
+main { flex-grow:1; padding:50px 40px; display:flex; flex-direction:column; gap:30px; }
+main h1 { font-size:2.4em; color:#111827; }
+.search-bar { position:relative; display:flex; width:100%; max-width:500px; border-radius:8px; overflow:hidden; background:#fff8e1; }
+.search-bar input { flex:1; padding:10px; border:none; outline:none; font-size:0.9em; }
+.suggestions { position:absolute; top:100%; left:0; width:100%; background:#fff; border-radius:8px; margin-top:5px; max-height:250px; overflow-y:auto; box-shadow:0 4px 10px rgba(0,0,0,0.15); z-index:999; }
+.suggestion-item { padding:10px; border-bottom:1px solid #eee; font-size:0.9em; }
+.suggestion-item a { text-decoration:none; color:#1f2937; display:block; }
+.suggestion-item:hover { background:#f3f4f6; cursor:pointer; }
+@media(max-width:768px){body{flex-direction:column;}nav{width:100%;flex-direction:row;gap:15px;padding:15px;}nav h2{display:none;}nav a{flex-shrink:0;padding:10px 15px;}main{padding:30px 20px;}}
 </style>
 </head>
-
 <body>
 
 <nav>
   <h2>TechÉquilibre</h2>
-
   <a href="#">Accueil</a>
-
   <li>
     <a href="#">Articles récents ▼</a>
     <ul>
-      <li><a href="articles/quel-os-choisir-2026.html">Quel OS choisir en 2026</a></li>
-      <li><a href="articles/materiel-pc.html">Choisir le bon matériel PC</a></li>
+      <li><a href="/articles/quel-os-choisir-2026.html">Quel OS choisir en 2026</a></li>
+      <li><a href="/articles/materiel-pc.html">Choisir le bon matériel PC</a></li>
     </ul>
   </li>
-
   <a href="#">À propos</a>
   <a href="#">Contact</a>
 </nav>
 
 <main>
   <h1>Bienvenue sur TechÉquilibre</h1>
-
   <p>TechÉquilibre vous aide à comprendre l’informatique simplement.</p>
 
-  <!-- BARRE DE RECHERCHE SUR L’INDEX -->
+  <!-- BARRE DE RECHERCHE -->
   <div class="search-bar">
     <input type="text" class="searchInput" placeholder="Rechercher un article...">
     <div class="suggestions"></div>
   </div>
-
 </main>
 
 <script src="https://unpkg.com/lunr/lunr.js"></script>
@@ -102,3 +57,4 @@
 
 </body>
 </html>
+
