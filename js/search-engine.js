@@ -1,41 +1,27 @@
-fetch("../data/articles.json")
-  .then(res => res.json())
-  .then(data => {
+document.addEventListener("DOMContentLoaded", function() {
+  fetch("../data/articles.json")
+    .then(res => res.json())
+    .then(data => {
 
-    // Synonymes simples
-    const synonyms = {
-      "materiel": "composants",
-      "pc": "ordinateur"
-    }
+      // Index Lunr
+      const idx = lunr(function() {
+        this.ref("id")
+        this.field("title")
+        this.field("description")
+        data.forEach(doc => this.add(doc))
+      })
 
-    // Création index Lunr
-    const idx = lunr(function () {
-      this.ref("id")
-      this.field("title")
-      this.field("description")
-
-      data.forEach(doc => this.add(doc))
-    })
-
-    // Toutes les barres
-    const inputs = document.querySelectorAll(".searchInput")
-
-    inputs.forEach(input => {
+      // Barre de recherche
+      const input = document.querySelector(".searchInput")
       const suggestions = input.parentElement.querySelector(".suggestions")
 
-      input.addEventListener("input", function () {
-        let query = input.value.trim().toLowerCase()
+      input.addEventListener("input", function() {
+        const query = input.value.trim()
         if(query.length < 2) { suggestions.innerHTML=""; return; }
 
-        // Remplace par synonymes
-        Object.keys(synonyms).forEach(word => {
-          if(query.includes(word)) query = query.replace(word, synonyms[word])
-        })
-
-        // Recherche avec tolérance
-        const results = idx.search(query + "*") // le * permet recherche partielle
-
+        const results = idx.search(query + "*") // recherche partielle
         suggestions.innerHTML = ""
+
         results.slice(0,5).forEach(r => {
           const article = data.find(a => a.id === r.ref)
           const div = document.createElement("div")
@@ -44,7 +30,7 @@ fetch("../data/articles.json")
           suggestions.appendChild(div)
         })
       })
-    })
 
-  })
-  .catch(err => console.error("Erreur chargement articles :", err))
+    })
+    .catch(err => console.error("Erreur chargement articles :", err))
+})
