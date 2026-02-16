@@ -7,14 +7,16 @@ fetch("data/articles.json")
       this.field("title")
       this.field("content")
 
-      data.forEach(doc => this.add(doc))
+      data.forEach(doc => {
+        this.add(doc)
+      })
     })
 
     const input = document.getElementById("searchInput")
     const suggestions = document.getElementById("suggestions")
 
     input.addEventListener("input", function () {
-      const query = input.value
+      const query = input.value.trim()
 
       if (query.length < 2) {
         suggestions.innerHTML = ""
@@ -34,4 +36,7 @@ fetch("data/articles.json")
         suggestions.appendChild(div)
       })
     })
+  })
+  .catch(error => {
+    console.error("Erreur chargement articles :", error)
   })
