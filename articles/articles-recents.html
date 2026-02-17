@@ -101,26 +101,34 @@
   </main>
 
   <!-- SCRIPT AFFICHAGE ARTICLES -->
-  <script>
-    fetch('../data/articles.json')
-      .then(response => response.json())
-      .then(data => {
-        data.sort((a,b) => new Date(b.date) - new Date(a.date)); // Tri par date
-        const container = document.getElementById('articles-list');
+ <style>
+  .article {
+    margin-bottom: 20px;
+  }
+</style>
 
-        data.forEach(article => {
-          const div = document.createElement('div');
-          div.className = 'article';
-          div.innerHTML = `
-            <h2><a href="${article.url}">${article.title}</a></h2>
-            <span class="date">${article.date}</span>
-            <p class="description">${article.description}</p>
-          `;
-          container.appendChild(div);
-        });
-      })
-      .catch(err => console.error('Erreur chargement articles:', err));
-  </script>
+<!-- SCRIPT AFFICHAGE ARTICLES -->
+<script>
+  fetch('../data/articles.json')
+    .then(response => response.json())
+    .then(data => {
+      data.sort((a,b) => new Date(b.date) - new Date(a.date));
+      const container = document.getElementById('articles-list');
+
+      data.forEach(article => {
+        const div = document.createElement('div');
+        div.className = 'article';
+        div.innerHTML = `
+          <h2><a href="${article.url}">${article.title}</a></h2>
+          <span class="date">${article.date}</span>
+          <p class="description">${article.description}</p>
+        `;
+        container.appendChild(div);
+      });
+    })
+    .catch(err => console.error('Erreur chargement articles:', err));
+</script>
+
 
 <!-- JS RECHERCHE LOCALE -->
 <script>
