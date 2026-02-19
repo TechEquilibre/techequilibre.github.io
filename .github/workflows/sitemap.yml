@@ -18,23 +18,27 @@ jobs:
 
       # 2️⃣ Générer le sitemap
       - name: Generate sitemap
-        run: |
-          echo '<?xml version="1.0" encoding="UTF-8"?>' > sitemap.xml
-          echo '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' >> sitemap.xml
+  run: |
+    echo '<?xml version="1.0" encoding="UTF-8"?>' > sitemap.xml
+    echo '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' >> sitemap.xml
 
-          # Parcourir tous les fichiers HTML du repo
-          for file in $(find . -name "*.html"); do
-            # Nettoyer le chemin pour obtenir l'URL
-            url=$(echo $file | sed 's|^\./||' | sed 's|index.html||')
+    # Parcourir tous les fichiers HTML (sauf .github)
+    find . -type f -name "*.html" -not -path "./.github/*" | while read file; do
+      
+      # Nettoyer le chemin
+      url=$(echo "$file" | sed 's|^\./||' | sed 's|index.html$||')
 
-            # Récupérer la date du dernier commit pour ce fichier
-            lastmod=$(git log -1 --format=%ad --date=short -- "$file")
+      # Récupérer la date du dernier commit
+      lastmod=$(git log -1 --format=%ad --date=short -- "$file")
 
-            # Ajouter dans le sitemap
-            echo "<url><loc>https://techequilibre.github.io/$url</loc><lastmod>$lastmod</lastmod></url>" >> sitemap.xml
-          done
+      echo "<url>" >> sitemap.xml
+      echo "<loc>https://techequilibre.github.io/$url</loc>" >> sitemap.xml
+      echo "<lastmod>$lastmod</lastmod>" >> sitemap.xml
+      echo "</url>" >> sitemap.xml
 
-          echo '</urlset>' >> sitemap.xml
+    done
+
+    echo '</urlset>' >> sitemap.xml
 
       # 3️⃣ Commit et push automatiquement avec l’action sécurisée
       - name: Commit sitemap
