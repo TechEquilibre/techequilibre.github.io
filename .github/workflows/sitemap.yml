@@ -22,13 +22,11 @@ jobs:
     echo '<?xml version="1.0" encoding="UTF-8"?>' > sitemap.xml
     echo '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' >> sitemap.xml
 
-    # Parcourir tous les fichiers HTML (sauf .github)
-    find . -type f -name "*.html" -not -path "./.github/*" | while read file; do
+    find . -type f -name "*.html" -not -path "./.github/*" -print0 | while IFS= read -r -d '' file; do
       
-      # Nettoyer le chemin
-      url=$(echo "$file" | sed 's|^\./||' | sed 's|index.html$||')
+      url="${file#./}"
+      url="${url%index.html}"
 
-      # Récupérer la date du dernier commit
       lastmod=$(git log -1 --format=%ad --date=short -- "$file")
 
       echo "<url>" >> sitemap.xml
@@ -39,6 +37,7 @@ jobs:
     done
 
     echo '</urlset>' >> sitemap.xml
+
 
       # 3️⃣ Commit et push automatiquement avec l’action sécurisée
       - name: Commit sitemap
