@@ -4,47 +4,41 @@ on:
   push:
     branches:
       - main
+  workflow_dispatch:
+
+permissions:
+  contents: write
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-      # 1️⃣ Checkout avec credentials pour push
-      - name: Checkout
-        uses: actions/checkout@v3
-        with:
-          persist-credentials: true  # ✅ essentiel pour permettre au bot de push
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
-      # 2️⃣ Générer le sitemap
       - name: Generate sitemap
-  run: |
-    echo '<?xml version="1.0" encoding="UTF-8"?>' > sitemap.xml
-    echo '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' >> sitemap.xml
+        run: |
+          echo '<?xml version="1.0" encoding="UTF-8"?>' > sitemap.xml
+          echo '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' >> sitemap.xml
 
-    find . -type f -name "*.html" -not -path "./.github/*" -print0 | while IFS= read -r -d '' file; do
-      
-      url="${file#./}"
-      url="${url%index.html}"
+          find . -type f -name "*.html" -not -path "./.github/*" -print0 | while IFS= read -r -d '' file; do
+            url="${file#./}"
+            url="${url%index.html}"
+            lastmod=$(git log -1 --format=%ad --date=short -- "$file")
 
-      lastmod=$(git log -1 --format=%ad --date=short -- "$file")
+            echo "<url>" >> sitemap.xml
+            echo "<loc>https://techequilibre.github.io/$url</loc>" >> sitemap.xml
+            echo "<lastmod>$lastmod</lastmod>" >> sitemap.xml
+            echo "</url>" >> sitemap.xml
+          done
 
-      echo "<url>" >> sitemap.xml
-      echo "<loc>https://techequilibre.github.io/$url</loc>" >> sitemap.xml
-      echo "<lastmod>$lastmod</lastmod>" >> sitemap.xml
-      echo "</url>" >> sitemap.xml
+          echo '</urlset>' >> sitemap.xml
 
-    done
-
-    echo '</urlset>' >> sitemap.xml
-
-
-      # 3️⃣ Commit et push automatiquement avec l’action sécurisée
       - name: Commit sitemap
-        uses: stefanzweifel/git-auto-commit-action@v4
-        with:
-          commit_message: "Mise à jour automatique du plan du site"
-          branch: main
-          file_pattern: sitemap.xml
-          commit_user_name: "GitHub Actions"
-          commit_user_email: "41898282+github-actions[bot]@users.noreply.github.com"
+        run: |
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+          git add sitemap.xml
+          git commit -m "Update sitemap" || echo "No changes to commit"
+          git push
