@@ -10,16 +10,18 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # 1️⃣ Récupérer le code du repo
+      # 1️⃣ Récupérer le code du repo avec permissions pour push
       - name: Checkout
         uses: actions/checkout@v3
+        with:
+          persist-credentials: true  # ✅ essentiel pour push
 
       # 2️⃣ Générer le sitemap
       - name: Generate sitemap
         run: |
           echo '<?xml version="1.0" encoding="UTF-8"?>' > sitemap.xml
           echo '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' >> sitemap.xml
-          
+
           # Parcourir tous les fichiers HTML
           for file in $(find . -name "*.html"); do
             # Nettoyer le chemin pour obtenir l'URL
@@ -31,13 +33,15 @@ jobs:
             # Ajouter la balise <url> avec <loc> et <lastmod>
             echo "<url><loc>https://techequilibre.github.io/$url</loc><lastmod>$lastmod</lastmod></url>" >> sitemap.xml
           done
-          
+
           echo '</urlset>' >> sitemap.xml
 
-      # 3️⃣ Commit et push automatique
+      # 3️⃣ Commit et push automatique avec l’action sécurisée
       - name: Commit sitemap
         uses: stefanzweifel/git-auto-commit-action@v4
         with:
-          commit_message: Auto update sitemap
+          commit_message: "Mise à jour automatique du plan du site"
           branch: main
           file_pattern: sitemap.xml
+          commit_user_name: "GitHub Actions"
+          commit_user_email: "41898282+github-actions[bot]@users.noreply.github.com"
