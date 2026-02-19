@@ -10,23 +10,34 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      # 1️⃣ Récupérer le code du repo
       - name: Checkout
         uses: actions/checkout@v3
 
+      # 2️⃣ Générer le sitemap
       - name: Generate sitemap
         run: |
           echo '<?xml version="1.0" encoding="UTF-8"?>' > sitemap.xml
           echo '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' >> sitemap.xml
+          
+          # Parcourir tous les fichiers HTML
           for file in $(find . -name "*.html"); do
+            # Nettoyer le chemin pour obtenir l'URL
             url=$(echo $file | sed 's|^\./||' | sed 's|index.html||')
-            echo "<url><loc>https://techequilibre.github.io/$url</loc></url>" >> sitemap.xml
+            
+            # Récupérer la date du dernier commit de ce fichier
+            lastmod=$(git log -1 --format=%ad --date=short -- "$file")
+            
+            # Ajouter la balise <url> avec <loc> et <lastmod>
+            echo "<url><loc>https://techequilibre.github.io/$url</loc><lastmod>$lastmod</lastmod></url>" >> sitemap.xml
           done
+          
           echo '</urlset>' >> sitemap.xml
 
+      # 3️⃣ Commit et push automatique
       - name: Commit sitemap
-        run: |
-          git config user.name github-actions
-          git config user.email github-actions@github.com
-          git add sitemap.xml
-          git commit -m "Auto update sitemap" || echo "No changes"
-          git push
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: Auto update sitemap
+          branch: main
+          file_pattern: sitemap.xml
