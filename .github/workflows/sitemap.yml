@@ -19,21 +19,27 @@ jobs:
 
       - name: Generate sitemap
         run: |
-          echo '<?xml version="1.0" encoding="UTF-8"?>' > sitemap.xml
-          echo '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' >> sitemap.xml
+          # Génère un sitemap propre UTF-8 sans BOM
+          printf '<?xml version="1.0" encoding="UTF-8"?>\n' > sitemap.xml
+          printf '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' >> sitemap.xml
 
           find . -type f -name "*.html" -not -path "./.github/*" -print0 | while IFS= read -r -d '' file; do
+            # Nettoyer chemin et remplacer espaces par des tirets
             url="${file#./}"
             url="${url%index.html}"
-            lastmod=$(git log -1 --format=%ad --date=short -- "$file")
+            url="${url// /-}"
 
-            echo "<url>" >> sitemap.xml
-            echo "<loc>https://techequilibre.github.io/$url</loc>" >> sitemap.xml
-            echo "<lastmod>$lastmod</lastmod>" >> sitemap.xml
-            echo "</url>" >> sitemap.xml
+            # Récupère la date du dernier commit, fallback à aujourd'hui si vide
+            lastmod=$(git log -1 --format=%ad --date=short -- "$file" || date +%Y-%m-%d)
+            [ -z "$lastmod" ] && lastmod=$(date +%Y-%m-%d)
+
+            printf "  <url>\n" >> sitemap.xml
+            printf "    <loc>https://techequilibre.github.io/$url</loc>\n" >> sitemap.xml
+            printf "    <lastmod>$lastmod</lastmod>\n" >> sitemap.xml
+            printf "  </url>\n" >> sitemap.xml
           done
 
-          echo '</urlset>' >> sitemap.xml
+          printf '</urlset>\n' >> sitemap.xml
 
       - name: Commit sitemap
         run: |
