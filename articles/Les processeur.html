@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TechÉquilibre</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+
+  <!-- CSS principal -->
+  <style>
+    * { margin:0; padding:0; box-sizing:border-box; font-family:'Inter', sans-serif; }
+    body { display:flex; min-height:100vh; background:#f9fafb; color:#1f2937; }
+    
+    /* MENU LATÉRAL */
+    nav { width:220px; background:#3b82f6; color:#fff; padding:30px 20px; display:flex; flex-direction:column; gap:20px; position:relative; }
+    nav h2 { font-size:1.8em; }
+    nav a { text-decoration:none; color:#fff; padding:8px 0; border-radius:6px; transition:background 0.2s; }
+    nav a:hover { background: rgba(255,255,255,0.2); }
+    nav ul { list-style:none; padding-left:0; }
+    nav li { margin:5px 0; }
+
+    /* CONTENU */
+    main { flex-grow:1; padding:50px 40px; display:flex; flex-direction:column; gap:30px; }
+    main h1 { font-size:2.4em; color:#111827; }
+
+    /* BARRE DE RECHERCHE */
+    .search-bar { position:relative; max-width:500px; margin:20px 0; }
+    .search-bar input { width:100%; padding:10px; border:none; outline:none; border-radius:6px; font-size:0.9em; }
+    .suggestions {
+      background:white;
+      border-radius:6px;
+      box-shadow:0 4px 10px rgba(0,0,0,0.15);
+      margin-top:5px;
+      max-height:250px;
+      overflow-y:auto;
+      position:absolute;
+      width:100%;
+      z-index:999;
+    }
+    .suggestion-item { padding:10px; border-bottom:1px solid #eee; cursor:pointer; }
+    .suggestion-item:hover { background:#f3f4f6; }
+    .suggestion-item a { text-decoration:none; color:#1f2937; display:block; }
+
+    /* RESPONSIVE */
+    @media(max-width:768px){
+      body{flex-direction:column;}
+      nav{width:100%; flex-direction:row; gap:15px; padding:15px;}
+      nav h2{display:none;}
+      nav a{flex-shrink:0;padding:10px 15px;}
+      main{padding:30px 20px;}
+    }
+      
+    /* Styles pour les tableaux */
+    main table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 15px 0;
+      font-size: 1em;
+    }
+
+    main table th,
+    main table td {
+      border: 1px solid #ccc;
+      padding: 8px 12px;
+      text-align: left;
+    }
+
+    main table tr:nth-child(even) {
+      background-color: #f3f4f6;
+    }
+
+    main table th {
+      background-color: #e5e7eb;
+      font-weight: 600;
+    }
+    
+  </style>
+</head>
+
+<body>
+
+  <!-- MENU LATÉRAL -->
+  <nav>
+    <h2>TechÉquilibre</h2>
+
+    <!-- BARRE DE RECHERCHE -->
+    <div class="search-bar">
+      <input type="text" class="searchInput" placeholder="Rechercher un article...">
+      <div class="suggestions"></div>
+    </div>
+
+    <a href="../index.html">Accueil</a>
+    <a href="articles-recents.html">Articles récents</a>
+    <a href="../a-propos.html">À propos</a>
+  </nav>
+
+<!-- TON ARTICLE COMPLET EST BIEN ICI -->
+<main>
+<p>
+<h1 class="western"><span style="font-size: xx-large;"><strong>Les noms des processeurs et leurs normes</strong></span></h1>
+ <br>
+ <a href="../sommaires/sommaire-les-composants-PC-et-leurs-normes.html">Retour au sommaire de cette série d'articles</a>
+<br>
+<h2 class="western">Sommaire</h2>
+<ul>
+<li><a href="#introduction">Introduction</a></li>
+<li><a href="#Intel">Intel</a></li>
+<li><a href="#AMD">AMD</a></li>
+<li><a href="#Conclusion">Conclusion</a></li>
+</ul>
+<h2 class="western"><br /> </h2>
+<h2 id="introduction" class="western">Introduction</h2>
+<p>Aujourd&rsquo;hui, le march&eacute; des processeurs pour PC est domin&eacute; par deux marques principales : <strong>Intel</strong> et <strong>AMD</strong>.<br /> Cet article se concentre uniquement sur les processeurs grand public de ces deux fabricants.<br /> Nous expliquerons en d&eacute;tail la signification des noms des processeurs, afin que m&ecirc;me un d&eacute;butant puisse s&rsquo;y retrouver dans ce monde qui peut sembler, &agrave; premi&egrave;re vue, complexe et effrayant, mais qui s&rsquo;av&egrave;re en r&eacute;alit&eacute; beaucoup plus simple qu&rsquo;on ne le pense.</p>
+<h3 class="western">Mais qu&rsquo;est-ce qu&rsquo;un processeur ?</h3>
+<p>Un processeur (ou CPU) est le cerveau de votre ordinateur. C&rsquo;est lui qui effectue tous les calculs et traitements. Il est donc important de choisir un processeur adapt&eacute; &agrave; vos besoins.</p>
+<h2 class="western"><br /> </h2>
+<h2 id="Intel" class="western">Intel</h2>
+<p>Chez Intel, il existe aujourd&rsquo;hui deux grandes familles de processeurs grand public :</p>
+<ul>
+<li>
+<p><strong>Intel Core iX</strong> (i3, i5, i7, i9)</p>
+</li>
+<li>
+<p><strong>Intel Core Ultra</strong>, plus r&eacute;cents</p>
+</li>
+</ul>
+<p>Les Core Ultra sont con&ccedil;us avec une architecture moderne, optimis&eacute;e pour l&rsquo;intelligence artificielle et l&rsquo;efficacit&eacute; &eacute;nerg&eacute;tique.<br /> Cependant, un processeur iX peut &ecirc;tre plus puissant qu&rsquo;un Core Ultra et inversement. Tout d&eacute;pend du mod&egrave;le pr&eacute;cis, de la g&eacute;n&eacute;ration et de la gamme.</p>
+<h3 class="western">Les g&eacute;n&eacute;rations des processeurs iX</h3>
+<p>Les processeurs iX vont de la 1&egrave;re &agrave; la 14&egrave;me g&eacute;n&eacute;ration.<br /> Exemples :</p>
+<ul>
+<li>
+<p>i3-14100 &rarr; 14&egrave;me g&eacute;n&eacute;ration</p>
+</li>
+<li>
+<p>i5-13600K &rarr; 13&egrave;me g&eacute;n&eacute;ration</p>
+</li>
+</ul>
+<p>Le ou les premiers chiffres du num&eacute;ro indiquent la g&eacute;n&eacute;ration :</p>
+<ul>
+<li>
+<p>14xxx = 14&egrave;me g&eacute;n&eacute;ration</p>
+</li>
+<li>
+<p>13xxx = 13&egrave;me g&eacute;n&eacute;ration</p>
+</li>
+</ul>
+<p>Plus la g&eacute;n&eacute;ration est r&eacute;cente, plus l&rsquo;architecture est moderne.</p>
+<h3 class="western">Rapports de puissance par gamme</h3>
+<ul>
+<li>
+<p><strong>i3</strong> : Moins puissant des iX mais pas toujours le plus faible de sa g&eacute;n&eacute;ration (il existe aussi les Pentium et Celeron pour PC portable).</p>
+<ul>
+<li>
+<p>i3 X100 &rarr; X200 &rarr; X300</p>
+</li>
+<li>
+<p>Diff&eacute;rences de performance souvent faibles</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>i5</strong> : Meilleur rapport performance/prix, id&eacute;al pour PC milieu de gamme (&lt;1000 &euro;).</p>
+<ul>
+<li>
+<p>i5 X400 &rarr; X500 &rarr; X600</p>
+</li>
+<li>
+<p>Diff&eacute;rence ~10-15% entre X400 et X600</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>i7</strong> : Pour ceux qui recherchent la puissance brute.</p>
+<ul>
+<li>
+<p>i7 X700 &rarr; i7 X800 (plus rare)</p>
+</li>
+<li>
+<p>Diff&eacute;rences modestes entre mod&egrave;les</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>i9</strong> : Haute performance professionnelle, toujours tr&egrave;s puissant.</p>
+<ul>
+<li>
+<p>i9 X900 et variantes</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 class="western">Lettres des processeurs Intel</h3>
+<table width="549" cellspacing="0" cellpadding="2">
+<thead>
+<tr>
+<th width="46">
+<p>Lettre</p>
+</th>
+<th width="233">
+<p>Signification</p>
+</th>
+<th width="258">
+<p>Exemple / Usage</p>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td width="46">
+<p>K</p>
+</td>
+<td width="233">
+<p>Overclockable</p>
+</td>
+<td width="258">
+<p>i5-13600K</p>
+</td>
+</tr>
+<tr>
+<td width="46">
+<p>F</p>
+</td>
+<td width="233">
+<p>Pas de GPU int&eacute;gr&eacute;</p>
+</td>
+<td width="258">
+<p>i5-12400F &rarr; n&eacute;cessite carte graphique</p>
+</td>
+</tr>
+<tr>
+<td width="46">
+<p>H</p>
+</td>
+<td width="233">
+<p>Haute performance laptop</p>
+</td>
+<td width="258">
+<p>Core Ultra 7 155H</p>
+</td>
+</tr>
+<tr>
+<td width="46">
+<p>U</p>
+</td>
+<td width="233">
+<p>Tr&egrave;s basse consommation / ultra-fin</p>
+</td>
+<td width="258">
+<p>i5-12400U</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3 class="western"><br /> </h3>
+<h3 class="western">Les g&eacute;n&eacute;rations Core Ultra</h3>
+<ul>
+<li>
+<p>3 g&eacute;n&eacute;rations : Core Ultra 100, 200, 300</p>
+</li>
+<li>
+<p>Exemple : <strong>Core Ultra 7 155H</strong></p>
+<ul>
+<li>
+<p>Ultra 7 &rarr; gamme (&eacute;quivalent i7)</p>
+</li>
+<li>
+<p>1 &rarr; 1&egrave;re g&eacute;n&eacute;ration Core Ultra</p>
+</li>
+<li>
+<p>55 &rarr; position dans la gamme</p>
+</li>
+<li>
+<p>H &rarr; type de processeur (haute performance laptop)</p>
+</li>
+</ul>
+</li>
+<li>
+<p>S&eacute;rie 100 &rarr; 1&egrave;re g&eacute;n&eacute;ration (Meteor Lake)</p>
+</li>
+<li>
+<p>S&eacute;rie 200 &rarr; 2&egrave;me g&eacute;n&eacute;ration (Lunar Lake)</p>
+</li>
+</ul>
+<h2 class="western"><br /> </h2>
+<h2 id="AMD" class="western">AMD</h2>
+<p>Chez AMD, il n&rsquo;existe qu&rsquo;une seule famille de processeurs grand public : <strong>Ryzen</strong>.<br /> Le syst&egrave;me de nommage est plus simple et s&rsquo;apparente &agrave; celui d&rsquo;Intel.</p>
+<ul>
+<li>
+<p>G&eacute;n&eacute;rations : Ryzen 1000 &rarr; Ryzen 9000</p>
+</li>
+<li>
+<p>Gammes : Ryzen 3, 5, 7, 9 (plus le chiffre est &eacute;lev&eacute;, plus le processeur est puissant)</p>
+</li>
+</ul>
+<h3 class="western">Lettres des processeurs AMD</h3>
+<table width="628" cellspacing="0" cellpadding="2">
+<thead>
+<tr>
+<th width="46">
+<p>Lettre</p>
+</th>
+<th width="204">
+<p>Signification</p>
+</th>
+<th width="365">
+<p>Exemple / Usage</p>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td width="46">
+<p>X</p>
+</td>
+<td width="204">
+<p>Overclockable</p>
+</td>
+<td width="365">
+<p>Ryzen 7 5800X</p>
+</td>
+</tr>
+<tr>
+<td width="46">
+<p>U</p>
+</td>
+<td width="204">
+<p>Ultra-fin / basse consommation</p>
+</td>
+<td width="365">
+<p>Ryzen 5 5625U</p>
+</td>
+</tr>
+<tr>
+<td width="46">
+<p>H</p>
+</td>
+<td width="204">
+<p>Haute performance laptop</p>
+</td>
+<td width="365">
+<p>Ryzen 7 6800H</p>
+</td>
+</tr>
+<tr>
+<td width="46">
+<p>G</p>
+</td>
+<td width="204">
+<p>GPU int&eacute;gr&eacute;</p>
+</td>
+<td width="365">
+<p>Ryzen 5 5600G &rarr; pas besoin de carte graphique d&eacute;di&eacute;e</p>
+</td>
+</tr>
+</tbody>
+</table>
+<blockquote><em><strong>Attention : si un Ryzen n&rsquo;a pas la lettre </strong></em><strong><em><strong>G</strong></em></strong><em><strong>, il ne poss&egrave;de pas de carte graphique int&eacute;gr&eacute;e. Une carte graphique d&eacute;di&eacute;e sera n&eacute;cessaire pour afficher l&rsquo;image.</strong></em></blockquote>
+<h2 class="western"><br /> </h2>
+<h2 id="Conclusion" class="western">Conclusion</h2>
+<p>Vous savez maintenant tout ce qu&rsquo;il faut pour comprendre le monde des processeurs et d&eacute;chiffrer les noms des mod&egrave;les Intel et AMD.<br /> Avec ces connaissances, choisir le processeur adapt&eacute; &agrave; vos besoins devient beaucoup plus simple.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+</main>
+
+<!-- JS RECHERCHE LOCALE -->
+<script>
+  // Charger les articles
+  fetch('../data/articles.json')
+    .then(res => res.json())
+    .then(data => {
+      const inputs = document.querySelectorAll(".searchInput");
+
+      // Tolérance simple aux fautes (1 caractère)
+      function simpleMatch(str, query){
+        str = str.toLowerCase(); query = query.toLowerCase();
+        if(str.includes(query)) return true;
+        let errors = 0;
+        for(let i=0;i<Math.min(str.length,query.length);i++){
+          if(str[i]!==query[i]) errors++;
+          if(errors>1) return false;
+        }
+        return true;
+      }
+
+      // Vérifier correspondance avec titre, description ou keywords
+      function matchArticle(article, query){
+        if(simpleMatch(article.title, query)) return true;
+        if(simpleMatch(article.description, query)) return true;
+        for(let kw of article.keywords){
+          if(simpleMatch(kw, query)) return true;
+        }
+        return false;
+      }
+
+      inputs.forEach(input=>{
+        const suggestions = input.parentElement.querySelector(".suggestions");
+        input.addEventListener("input", ()=>{
+          const query = input.value.trim();
+          suggestions.innerHTML='';
+          if(query.length<2) return;
+
+          const results = data.filter(a=>matchArticle(a, query));
+
+          results.slice(0,5).forEach(article=>{
+            const div = document.createElement("div");
+            div.className="suggestion-item";
+            div.innerHTML=`<a href="${article.url}"><strong>${article.title}</strong><br><small>${article.description}</small></a>`;
+            suggestions.appendChild(div);
+          });
+        });
+      });
+    })
+    .catch(err=>console.error("Erreur chargement articles :", err));
+</script>
+
+</body>
+</html>
