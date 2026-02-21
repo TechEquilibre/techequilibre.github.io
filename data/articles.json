@@ -24,5 +24,14 @@
     "date": "2026-02-21",
     "description": "Sommaire d'une série d'articles sur les composants PC et leurs normes pour bien tous comprendres ",
     "keywords": ["composants", "composants" , "processeur" , "cpu" , "carte mère" , "carte graphique" , "gpu" , "stockage" , "RAM" , "mémoire vive" , "mémoire"]
+  },
+
+  {
+    "id": "4",
+    "title": "Le nom des processeurs et leurs significations",
+    "url": "/articles/les-processeurs.html",
+    "date": "2026-02-21",
+    "description": "Explications simples et accessibles sur le noms des processeurs et les normes qui y sont associées ",
+    "keywords": ["composants", "composants" , "processeur" , "cpu" ]
   }
 ]
