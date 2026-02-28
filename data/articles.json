@@ -33,5 +33,14 @@
     "date": "2026-02-21",
     "description": "Explications simples et accessibles sur le noms des processeurs et les normes qui y sont associées ",
     "keywords": ["composants", "composants" , "processeur" , "cpu" ]
+  },
+
+  {
+    "id": "4",
+    "title": "Les noms des cartes mères et leurs normes",
+    "url": "/articles/les-cartes-mères-leurs-normes-et-leurs-significations.html",
+    "date": "2026-02-28",
+    "description": "Explications simples et accessibles sur le noms des cartes mères et les normes qui y sont associées ",
+    "keywords": ["carte mère" , "socket" , "lga" , "chipset" ]
   }
 ]
